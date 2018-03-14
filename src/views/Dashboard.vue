@@ -1,5 +1,10 @@
 <template>
   <div class="animated fadeIn">
+    <b-row v-if="lastBlock >= startBlock && lastBlock < endBlock">
+      <b-col md="12">
+        <b-progress :value="progress" animated style="width:100%;"></b-progress>
+      </b-col>
+    </b-row>
     <notifications position="bottom right" group="copy" />
     <b-row>
       <b-col sm="6" lg="3">
@@ -35,11 +40,6 @@
         </b-card>
       </b-col>
     </b-row>
-    <b-row v-if="lastBlock >= startBlock && lastBlock < endBlock">
-      <b-col md="12">
-        <b-progress :value="progress" animated style="width:100%;"></b-progress>
-      </b-col>
-    </b-row>
     <b-row>
       <b-col sm="12">
         <b-card header="Escher Airdrop Claim - TEST">
@@ -54,9 +54,9 @@
                 <li>In the <code>Contract Address</code> field insert the contract address displayed on the claim interface (below)</li>
                 <li>In the ABI / JSON Interface enter the following:</li>
                 <div class="input-group">
-                  <pre class="form-control"><code translate="no">{{ abi }}</code></pre>
+                  <pre class="form-control pre-abi"><code translate="no">{{ abi }}</code></pre>
                   <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" v-clipboard:copy="abi" v-clipboard:success="copySuccess" v-clipboard:error="copyError"><i class="fa fa-copy"></i></button>
+                    <button class="btn btn-primary btn-append" type="button" v-clipboard:copy="abi" v-clipboard:success="copySuccess" v-clipboard:error="copyError"><i class="fa fa-copy"></i></button>
                   </div>
                 </div>
                 <li>Press <code>Access</code></li>airdrop
@@ -72,9 +72,9 @@
                 <li>In the <code>CONTRACT NAME</code> field enter <code>Escher airdrop test</code></li>
                 <li>In the <code>JSON INTERFACE</code> field enter the following:</li>
                 <div class="input-group">
-                  <pre class="form-control"><code translate="no">{{ abi }}</code></pre>
+                  <pre class="form-control pre-abi"><code translate="no">{{ abi }}</code></pre>
                   <div class="input-group-append">
-                    <button class="btn btn-primary" type="button" v-clipboard:copy="abi" v-clipboard:success="copySuccess" v-clipboard:error="copyError"><i class="fa fa-copy"></i></button>
+                    <button class="btn btn-primary btn-append" type="button" v-clipboard:copy="abi" v-clipboard:success="copySuccess" v-clipboard:error="copyError"><i class="fa fa-copy"></i></button>
                   </div>
                 </div>
                 <li>Press <code>OK</code></li>
@@ -98,7 +98,7 @@
                 </div>
                 <input id="contractAddress" class="form-control" type="text" :value="contract" style="margin-left:5px;" readonly></input>
                 <div class="input-group-append">
-                  <button class="btn btn-primary" type="button" v-clipboard:copy="contract" v-clipboard:success="copySuccess" v-clipboard:error="copyError"><i class="fa fa-copy"></i></button>
+                  <button class="btn btn-primary btn-append" type="button" v-clipboard:copy="contract" v-clipboard:success="copySuccess" v-clipboard:error="copyError"><i class="fa fa-copy"></i></button>
                 </div>
               </div>
             </b-col>
@@ -116,8 +116,8 @@
             </b-card>
           </b-col>
         </b-row>
-        <b-card no-body style="margin-bottom:5px;">
-          <b-table class="mb-0 table-outline" responsive="sm" hover head-variant="light" :items="claims" :fields="tableFields" :current-page="currentPage" :per-page="perPage">
+        <b-card no-body header="<i class='fa fa-check' style='margin-right:5px;'></i>Claims" style="margin-bottom:5px;">
+          <b-table class="mb-0" responsive="sm" hover :items="claims" :fields="tableFields" :current-page="currentPage" :per-page="perPage">
             <div slot="identicon" class="identicon" slot-scope="data">
               <Blockie :address="data.item.address" size="small"/>
             </div>
@@ -132,7 +132,7 @@
             </div>
           </b-table>
         </b-card>
-        <nav>
+        <nav style="margin-right:-4px;">
           <b-pagination size="md" align="right" :total-rows="getRowCount(claims)" :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next"/>
         </nav>
       </b-col>

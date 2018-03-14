@@ -77,7 +77,159 @@
   }
 }
 
-// tables
+//sidebar
+
+.sidebar {
+  background-color: #222;
+}
+
+.sidebar .nav-link.active, .sidebar .navbar .active.dropdown-toggle, .navbar .sidebar .active.dropdown-toggle {
+  background-color: #333;
+}
+
+// bootstrap overides
+
+.tab-content {
+  padding-top:25px;
+  margin-top: -25px;
+  border-radius: 3px;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+}
+
+.nav-tabs {
+  border-bottom: none;
+  padding-left: 15px;
+}
+
+.nav-tabs .nav-link {
+  border-radius: 3px;
+  margin-right: 5px;
+  background-color: #fff;
+  color: #333;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+}
+
+.nav-tabs .nav-link.active, .nav-tabs .navbar .active.dropdown-toggle, .navbar .nav-tabs .active.dropdown-toggle {
+  background-color: #20a8d8;
+  border-color: #20a8d8;
+  color: #fff;
+}
+
+.nav-tabs .nav-link.active:focus, .nav-tabs .navbar .active.dropdown-toggle:focus, .navbar .nav-tabs .active.dropdown-toggle:focus {
+  background-color: #20a8d8;
+  border-color: #20a8d8;
+  color: #fff;
+}
+
 .table {
   margin-bottom: 0px;
+  border-radius: 3px;
+}
+
+.table thead th {
+  border-bottom: none;
+  border-top: none;
+  color: #333;
+}
+
+.table tbody tr:hover {
+  background-color: #20a8d8;
+  color: #fff;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.24);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.24);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.24);
+}
+
+.table tbody tr:hover td a {
+  color: #fff;
+}
+
+.card-header {
+  margin: -20px 15px 0;
+  border-radius: 3px;
+  padding: 15px;
+  background-color: #333;
+  color: #fff;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+}
+
+.card {
+  border-radius: 3px;
+  margin-top:10px;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+}
+
+.card-footer {
+  margin: 0px 15px -20px;
+  border-radius: 3px;
+  padding: 15px;
+  background-color: #333;
+  color: #fff;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+}
+
+.alert {
+  border-radius: 3px;
+}
+
+.alert-info {
+  -webkit-box-shadow:0px 1px 4px 0px rgba(224, 243, 248, 1);
+  -moz-box-shadow:0px 1px 4px 0px rgba(224, 243, 248, 1);
+  box-shadow: 0px 1px 4px 0px rgba(224, 243, 248, 1);
+}
+
+.alert-danger {
+  -webkit-box-shadow:0px 1px 4px 0px rgba(254,226,225, 1);
+  -moz-box-shadow:0px 1px 4px 0px rgba(254,226,225, 1);
+  box-shadow: 0px 1px 4px 0px rgba(254,226,225, 1);
+}
+
+.page-item, .pagination-datatables li, .pagination li {
+  margin-right: 4px;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+}
+
+.page-link {
+  border-radius: 3px;
+}
+
+#contractAddress {
+  border-radius: 3px;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+}
+
+.btn-append {
+  margin-left: 4px;
+  border-radius: 3px;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+}
+
+.pre-abi {
+  border-radius: 3px;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+}
+
+.progress {
+  border-radius: 3px;
+  -webkit-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  -moz-box-shadow:0px 1px 4px 0px rgba(0, 0, 0, 0.14);
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.14);
 }
