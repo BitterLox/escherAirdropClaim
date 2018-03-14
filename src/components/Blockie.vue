@@ -12,6 +12,15 @@ export default {
       blockieImg: ''
     }
   },
+  watch: {
+    address: function (val) {
+      this.blockieImg = this.createIcon({
+        seed: this.address,
+        size: 8,
+        scale: 16
+      }).toDataURL()
+    }
+  },
   methods: {
     seedrand: function (seed) {
       for (var i = 0; i < this.randseed.length; i++) {
