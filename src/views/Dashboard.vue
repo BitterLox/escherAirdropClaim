@@ -61,7 +61,7 @@
                 </div>
                 <li>Press <code>Access</code></li>airdrop
                 <li>Select function -> <code>claim</code></li>
-                <li>Send the transaction. <strong>Send 0 UBQ</strong>, but please ensure you have a very small amount of UBQ (~0.001) to cover the gas fee. The recommended gas limit is 100000.</li>
+                <li>Send the transaction. <strong>Send 0 UBQ</strong>, any claims with more than 0 UBQ included will be rejected by the contract. Ensure you have a very small amount of UBQ (~0.001) to cover the gas fee in the account making the claim. The recommended gas limit is 100000.</li>
               </ul>
             </b-tab>
             <b-tab title="Fusion">
@@ -82,7 +82,7 @@
                 <li>Select function -> <code>claim</code></li>
                 <li>Execute from -> Address you wish to claim from</li>
                 <li>Press <code>EXECUTE</code>
-                <li>Send the transaction. <strong>Send 0UBQ</strong>, but please ensure you have a very small amount of UBQ (~0.001) to cover the gas fee.</li>
+                <li>Send the transaction. <strong>Send 0 UBQ</strong>, any claims with more than 0 UBQ included will be rejected by the contract. Ensure you have a very small amount of UBQ (~0.001) to cover the gas fee in the account making the claim.</li>
               </ul>
             </b-tab>
           </b-tabs>
