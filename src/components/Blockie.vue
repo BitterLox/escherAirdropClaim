@@ -15,7 +15,7 @@ export default {
   watch: {
     address: function (val) {
       this.blockieImg = this.createIcon({
-        seed: this.address,
+        seed: val,
         size: 8,
         scale: 16
       }).toDataURL()
