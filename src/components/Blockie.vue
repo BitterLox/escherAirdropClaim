@@ -22,14 +22,6 @@ export default {
     }
   },
   methods: {
-    randaddr: function () {
-      var addr = '0x'
-      var charset = 'abcdef0123456789'
-      for (var i = 0; i < 40; i++) {
-        addr += charset.charAt(Math.floor(Math.random() * charset.length))
-      }
-      return addr
-    },
     seedrand: function (seed) {
       for (var i = 0; i < this.randseed.length; i++) {
         this.randseed[i] = 0
@@ -118,9 +110,8 @@ export default {
     }
   },
   created () {
-    var seed = this.address ? this.address.toLowerCase() : this.randaddr()
     this.blockieImg = this.createIcon({
-      seed: seed,
+      seed: this.address.toLowerCase(),
       size: 8,
       scale: 16
     }).toDataURL()
