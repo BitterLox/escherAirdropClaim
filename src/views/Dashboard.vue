@@ -1,11 +1,11 @@
 <template>
   <div class="animated fadeIn">
+    <notifications position="bottom right" group="bottom" width="100%"/>
     <b-row v-if="lastBlock >= startBlock && lastBlock < endBlock">
       <b-col md="12">
         <b-progress :value="progress" animated style="width:100%;"></b-progress>
       </b-col>
     </b-row>
-    <notifications position="bottom right" group="copy" />
     <b-row>
       <b-col sm="6" lg="3">
         <b-card no-body class="bg-info">
@@ -86,24 +86,38 @@
               </ul>
             </b-tab>
           </b-tabs>
-          <p style="margin-top:15px;"><i>
-            Note: No UBQ are transferred when signaling, the claim mechanism simply registers your indication to your address. As such, the entire UBQ balance stored at that address would be counted towards the airdrop. Once UBQ is transferred to a new address, the airdrop claim total would be lowered by a corresponding amount.
-          </i></p>
-          <b-row>
-            <b-col md="6">
-              <strong>Contract Address</strong>
+          <b-alert show style="margin-top:15px;margin-bottom:0px;">
+            No UBQ are transferred when signaling, the claim mechanism simply registers your address for this airdrop. As such, the entire UBQ balance stored at that address would be counted towards the airdrop. The balance at the airdrop claims defined end block ({{endBlock}}) is used, not the balance when the claim is made.
+          </b-alert>
+        </b-card>
+        <b-row>
+          <b-col md="6">
+            <b-card header="<i class='fa fa-qrcode' style='margin-right:5px;'></i>Contract Address">
               <div class="input-group">
                 <div class="input-group-prepend">
                   <Blockie :address="contract" size="med" inline="true"/>
                 </div>
-                <input id="contractAddress" class="form-control" type="text" :value="contract" style="margin-left:5px;" readonly></input>
+                <input class="form-control" type="text" :value="contract" style="margin-left:5px;" readonly></input>
                 <div class="input-group-append">
                   <button class="btn btn-primary btn-append" type="button" v-clipboard:copy="contract" v-clipboard:success="copySuccess" v-clipboard:error="copyError"><i class="fa fa-copy"></i></button>
                 </div>
               </div>
-            </b-col>
-          </b-row>
-        </b-card>
+            </b-card>
+          </b-col>
+          <b-col md="6">
+            <b-card header="<i class='fa fa-check-square' style='margin-right:5px;'></i>Check Your Claim">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <Blockie :address="checkAddress" size="med" inline="true"/>
+                </div>
+                <input class="form-control" type="text" style="margin-left:5px;" placeholder="Enter your address" v-model="checkAddress"></input>
+                <div class="input-group-append">
+                  <button class="btn btn-primary btn-append" type="button" v-on:click="checkClaim"><i class="fa fa-arrow-right"></i></button>
+                </div>
+              </div>
+            </b-card>
+          </b-col>
+        </b-row>
         <b-row>
           <b-col md="9">
             <b-card header="<i class='fa fa-bar-chart' style='margin-right:5px;'></i>Latest Claims">
@@ -160,6 +174,7 @@ export default {
       lastBlock: 0,
       claims: [],
       progress: 0,
+      checkAddress: '',
       errors: [],
       charts: {
         pie: null,
@@ -283,20 +298,50 @@ export default {
     copySuccess (e) {
       console.log('copied to clipboard')
       this.$notify({
-        group: 'copy',
+        group: 'bottom',
         text: 'Copied to clipboard'
       })
     },
     copyError (e) {
       console.log('unable to copy to clipboard')
       this.$notify({
-        group: 'copy',
+        group: 'bottom',
         text: 'Unable to copy to clipboard',
         type: 'error'
       })
     },
     getRowCount (items) {
       return this.claims.length
+    },
+    checkClaim () {
+      var validator = new RegExp(/^0x[0-9a-fA-F]{40}$/i)
+      if (validator.test(this.checkAddress)) {
+        axios.get('https://escherdrop.ubiqscan.io/checkclaim/' + this.contract + '/' + this.checkAddress)
+          .then(response => {
+            if (response.data.hasClaim === '1') {
+              this.$notify({
+                group: 'bottom',
+                text: 'Claim for address ' + this.checkAddress + ' was received successfully',
+                type: 'success'
+              })
+            } else {
+              this.$notify({
+                group: 'bottom',
+                text: 'Claim for address ' + this.checkAddress + ' not found',
+                type: 'error'
+              })
+            }
+          })
+          .catch(e => {
+            this.errors.push(e)
+          })
+      } else {
+        this.$notify({
+          group: 'bottom',
+          text: 'Invalid address',
+          type: 'error'
+        })
+      }
     }
   }
 }
