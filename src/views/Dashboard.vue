@@ -42,7 +42,7 @@
     </b-row>
     <b-row>
       <b-col sm="12">
-        <b-card header="Escher Airdrop Claim - TEST">
+        <b-card :header="title">
           <b-alert v-if="lastBlock < startBlock" variant="danger" show>The claim period has not started yet for this airdrop. All claims will be rejected by the claim contract until block {{ startBlock }}</b-alert>
           <b-alert v-if="lastBlock >= endBlock" variant="danger" show>The claim period has finished for this airdrop.</b-alert>
           <p> Ubiq makes use of a open proposal process to allow the community to determine what projects they would like to see built and deployed to the network next, and how development funds will be allocated. To participate in the governance system Escher tokens are required. To signal for an Escher airdrop, please complete the following steps: </p>
@@ -166,8 +166,10 @@ export default {
     return {
       contract: '0xd884cd05a38a64239c430ed2ef83df20e496ace4',
       abi: '[{"constant":true,"inputs":[],"name":"endBlock","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"claimersCount","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"startBlock","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"claim","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"offset","type":"uint256"},{"name":"limit","type":"uint256"}],"name":"getClaimers","outputs":[{"name":"_claimers","type":"address[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":"claimers","outputs":[{"name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"claims","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_startBlock","type":"uint256"},{"name":"_endBlock","type":"uint256"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"name":"claimer","type":"address"}],"name":"onClaim","type":"event"}]',
+      title: '-',
       startBlock: '-',
       endBlock: '-',
+      multiplier: 1,
       totalClaimedEscher: '-',
       totalClaimedUbiq: '-',
       totalClaims: '-',
@@ -240,6 +242,8 @@ export default {
           this.totalClaimedUbiq = response.data.totalClaimed
           this.lastBlock = response.data.lastBlock
           this.progress = (this.lastBlock - this.startBlock) / (this.endBlock - this.startBlock) * 100
+          this.title = response.data.title
+          this.multiplier = response.data.multiplier
 
           axios.get('https://api1.ubiqscan.io/v2/getsupply')
             .then(response_ => {
@@ -293,7 +297,7 @@ export default {
         })
     },
     toEscher: function (ubq) {
-      return (ubq * 12).toFixed(8)
+      return (ubq * this.multiplier).toFixed(8)
     },
     copySuccess (e) {
       console.log('copied to clipboard')
