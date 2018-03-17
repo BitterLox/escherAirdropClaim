@@ -130,25 +130,7 @@
             </b-card>
           </b-col>
         </b-row>
-        <b-card no-body header="<i class='fa fa-check' style='margin-right:5px;'></i>Claims" style="margin-bottom:5px;">
-          <b-table class="mb-0" responsive="sm" hover :items="claims" :fields="tableFields" :current-page="currentPage" :per-page="perPage">
-            <div slot="identicon" class="identicon" slot-scope="data">
-              <Blockie :address="data.item.address" size="small"/>
-            </div>
-            <div slot="address" slot-scope="data">
-              <div><a :href="'https://ubiqscan.io/address/' + data.value" target="_blank">{{data.value}}</a></div>
-            </div>
-            <div slot="balance" slot-scope="data">
-              <strong>{{data.value}}</strong>
-            </div>
-            <div slot="escher" slot-scope="data">
-              <strong>{{toEscher(data.item.balance)}}</strong>
-            </div>
-          </b-table>
-        </b-card>
-        <nav style="margin-right:-4px;">
-          <b-pagination size="md" align="right" :total-rows="getRowCount(claims)" :per-page="perPage" v-model="currentPage" prev-text="Prev" next-text="Next"/>
-        </nav>
+        <ClaimsTable :items="claims" :escher="toEscher"></ClaimsTable>
       </b-col>
     </b-row>
   </div>
@@ -159,6 +141,7 @@ import axios from 'axios'
 import Blockie from '../components/Blockie.vue'
 import BarChart from '../components/charts/Bar.vue'
 import PieChart from '../components/charts/Pie.vue'
+import ClaimsTable from '../components/tables/Claims.vue'
 
 export default {
   name: 'dashboard',
@@ -182,6 +165,7 @@ export default {
         pie: null,
         bar: null
       },
+      // chart options need to be passed as a prop to avoid a vue-chartjs bug
       chartOptions: {
         pie: {
           responsive: true,
@@ -201,27 +185,7 @@ export default {
           responsive: true,
           maintainAspectRatio: false
         }
-      },
-      tableFields: {
-        identicon: {
-          label: '<i class="fa fa-users">',
-          class: 'text-center identicon-column'
-        },
-        address: {
-          label: 'Address'
-        },
-        balance: {
-          label: 'Balance (UBQ)',
-          class: 'text-right'
-        },
-        escher: {
-          label: 'Escher (ESCH)',
-          class: 'text-right'
-        }
-      },
-      currentPage: 1,
-      perPage: 10,
-      totalRows: 0
+      }
     }
   },
   created () {
@@ -230,7 +194,8 @@ export default {
   components: {
     Blockie,
     BarChart,
-    PieChart
+    PieChart,
+    ClaimsTable
   },
   methods: {
     fetch: function () {
@@ -299,14 +264,14 @@ export default {
     toEscher: function (ubq) {
       return (ubq * this.multiplier).toFixed(8)
     },
-    copySuccess (e) {
+    copySuccess: function (e) {
       console.log('copied to clipboard')
       this.$notify({
         group: 'bottom',
         text: 'Copied to clipboard'
       })
     },
-    copyError (e) {
+    copyError: function (e) {
       console.log('unable to copy to clipboard')
       this.$notify({
         group: 'bottom',
@@ -314,10 +279,7 @@ export default {
         type: 'error'
       })
     },
-    getRowCount (items) {
-      return this.claims.length
-    },
-    checkClaim () {
+    checkClaim: function () {
       var validator = new RegExp(/^0x[0-9a-fA-F]{40}$/i)
       if (validator.test(this.checkAddress)) {
         axios.get('https://escherdrop.ubiqscan.io/checkclaim/' + this.contract + '/' + this.checkAddress)
