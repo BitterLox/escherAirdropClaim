@@ -6,6 +6,7 @@ import Full from '@/containers/Full'
 
 // Views
 import Dashboard from '@/views/Dashboard'
+import Airdrop from '@/views/Airdrop'
 
 Vue.use(Router)
 
@@ -24,6 +25,19 @@ export default new Router({
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
+        }
+      ]
+    },
+    {
+      path: 'airdrop',
+      name: 'Home',
+      component: Full,
+      children: [
+        {
+          path: '/airdrop/:contract',
+          name: 'Airdrop',
+          component: Airdrop,
+          props: true
         }
       ]
     }
