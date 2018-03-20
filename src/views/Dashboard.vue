@@ -77,7 +77,7 @@
             <div class="timeline-container pending right">
               <div class="timeline-content pending">
                 <h3>Block 448,000</h3>
-                <p>End of Escher airdrop claim period #1, esitmated to be 25th of April.</p>
+                <p>End of Escher airdrop claim period #1, estimated to be 25th of April.</p>
                 <p>Escher will be airdropped at a 12ESCH per 1UBQ ratio to all participants.</p>
                 <strong>Status: pending</strong>
               </div>
