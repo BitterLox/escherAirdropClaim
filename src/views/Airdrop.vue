@@ -69,7 +69,7 @@
                 <li>Go to the <code>CONTRACTS</code> page in Fusion</li>
                 <li>Press <code>WATCH CONTRACT</code></li>
                 <li>In the <code>CONTRACT ADDRESS</code> field insert the contract address displayed on the claim interface</li>
-                <li>In the <code>CONTRACT NAME</code> field enter <code>Escher airdrop test</code></li>
+                <li>In the <code>CONTRACT NAME</code> field enter <code>Escher {{title}}</code></li>
                 <li>In the <code>JSON INTERFACE</code> field enter the following:</li>
                 <div class="input-group">
                   <pre class="form-control pre-abi"><code translate="no">{{ abi }}</code></pre>
@@ -78,7 +78,7 @@
                   </div>
                 </div>
                 <li>Press <code>OK</code></li>
-                <li>Open <code>Escher airdrop test</code>
+                <li>Open <code>Escher {{title}}</code>
                 <li>Select function -> <code>claim</code></li>
                 <li>Execute from -> Address you wish to claim from</li>
                 <li>Press <code>EXECUTE</code>
