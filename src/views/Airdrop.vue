@@ -209,13 +209,12 @@ export default {
         .then(response => {
           this.startBlock = response.data.startBlock
           this.endBlock = response.data.endBlock
-          this.totalClaimedEscher = this.toEscher(response.data.totalClaimed)
           this.totalClaimedUbiq = response.data.totalClaimed
           this.lastBlock = response.data.lastBlock
           this.progress = (this.lastBlock - this.startBlock) / (this.endBlock - this.startBlock) * 100
           this.title = response.data.title
           this.multiplier = response.data.multiplier
-
+          this.totalClaimedEscher = this.toEscher(response.data.totalClaimed)
           axios.get('https://api1.ubiqscan.io/v2/getsupply')
             .then(response_ => {
               var percentClaimed = ((this.totalClaimedUbiq / response_.data.result) * 100).toFixed(2)
