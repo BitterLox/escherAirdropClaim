@@ -86,7 +86,7 @@
               <div :class="{'timeline-content': true, 'in-progress': timeline['2'].active, 'pending': timeline['2'].pending, 'complete': timeline['2'].complete }">
                 <h3>Block 536,800</h3>
                 <p>End of Escher airdrop claim period #2, estimated to take place in July.</p>
-                <p>Escher will be airdropped at a 12ESCH per 1UBQ ratio to all participants.</p>
+                <p>Escher Airdropped ratio TBA</p>
                 <strong>Status: {{ timeline['2'].status }}</strong>
               </div>
             </div>
@@ -94,7 +94,7 @@
               <div :class="{'timeline-content': true, 'in-progress': timeline['3'].active, 'pending': timeline['3'].pending, 'complete': timeline['3'].complete }">
                 <h3>Block 625,600</h3>
                 <p>End of Escher airdrop claim period #3, estimated to take place in October.</p>
-                <p>Escher will be airdropped at a 12ESCH per 1UBQ ratio to all participants.</p>
+                <p>Escher Airdropped ratio TBA</p>
                 <strong>Status: {{ timeline['3'].status }}</strong>
               </div>
             </div>
@@ -107,7 +107,7 @@
               <div :class="{'timeline-content': true, 'in-progress': timeline['4'].active, 'pending': timeline['4'].pending, 'complete': timeline['4'].complete }">
                 <h3>Block 714,400</h3>
                 <p>End of Escher airdrop claim period #4, estimated to take place in January.</p>
-                <p>Escher will be airdropped at a 12ESCH per 1UBQ ratio to all participants.</p>
+                <p>Escher Airdropped ratio TBA</p>
                 <strong>Status: {{ timeline['4'].status }}</strong>
               </div>
             </div>
