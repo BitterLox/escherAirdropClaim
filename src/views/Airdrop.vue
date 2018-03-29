@@ -59,7 +59,7 @@
                     <button class="btn btn-primary btn-append" type="button" v-clipboard:copy="abi" v-clipboard:success="copySuccess" v-clipboard:error="copyError"><i class="fa fa-copy"></i></button>
                   </div>
                 </div>
-                <li>Press <code>Access</code></li>airdrop
+                <li>Press <code>Access</code></li>
                 <li>Select function -> <code>claim</code></li>
                 <li>Send the transaction. <strong>Send 0 UBQ</strong>, any claims with more than 0 UBQ included will be rejected by the contract. Ensure you have a very small amount of UBQ (~0.001) to cover the gas fee in the account making the claim. The recommended gas limit is 100000.</li>
               </ul>
