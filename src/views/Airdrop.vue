@@ -184,8 +184,9 @@ export default {
             }],
             yAxes: [{
               ticks: {
-                beginAtZero: true
-              }
+                min: 1
+              },
+              type: 'logarithmic'
             }]
           },
           responsive: true,
